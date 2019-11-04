@@ -3,6 +3,7 @@ package com.example.readwritefile;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
@@ -68,7 +69,7 @@ public class MainActivity extends AppCompatActivity {
 //                        FileOutputStream fout = openFileOutput(filename, Context.MODE_PRIVATE);
 //                        fout.write(editNoiDung.getText().toString().getBytes());
 //                        fout.close();
-                        SharedPreferences pref = getApplicationContext().getSharedPreferences("myfile",0);
+                        SharedPreferences pref = getApplicationContext().getSharedPreferences(editTen.getText().toString(),Context.MODE_PRIVATE);
                         SharedPreferences.Editor editor = pref.edit();
                         editor.putString("content",editNoiDung.getText().toString());
                         editor.commit();
@@ -91,9 +92,12 @@ public class MainActivity extends AppCompatActivity {
 //                    while((line = br.readLine())!=null)
 //                        buffer.append(line).append("\n");
 //                    editNoiDung.setText(buffer.toString());
-                    SharedPreferences pref = getApplicationContext().getSharedPreferences("myfile",0);
-                    editNoiDung.setText(pref.getString("content",null));
-
+                    SharedPreferences pref = getApplicationContext().getSharedPreferences(editTen.getText().toString(),Context.MODE_PRIVATE);
+                    //editNoiDung.setText(pref.getString("content",null));
+                    Intent mo = new Intent(v.getContext(),Main2Activity.class);
+                    mo.putExtra("name",editTen.getText().toString());
+                    mo.putExtra("content",pref.getString("content",null));
+                    startActivity(mo);
                 } catch (Exception e) {
                     e.printStackTrace();
                 }

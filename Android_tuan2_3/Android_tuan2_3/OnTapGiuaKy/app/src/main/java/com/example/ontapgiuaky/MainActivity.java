@@ -61,7 +61,7 @@ public class MainActivity extends AppCompatActivity {
                 startActivityForResult(add,ADD);
             }
         });
-
+        
         listNV.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
